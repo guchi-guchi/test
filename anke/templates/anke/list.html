@@ -9,8 +9,9 @@
     <div class="questions">
       <h5>☆質問リスト</h5>
       <ul  style="list-style: none;">
-        <li>質問①：このブログの感想を教えて下さい</li>
-        <li>質問②：このブログは１００点満点中の何点ですか？</li>
+        <li>質問①：耳納北麓エリアで一番好きな所は（例：施設、お店、風景など）？</li>
+        <li>質問②：このエリアに来る前に、比較した場所があったら教えてください。</li>
+        <li>質問③：ここまでの移動手段を教えてください。</li>
       </ul>
     </div>
     <a class="btn btn-primary mb-3" href="{%  url 'anke:export' %}">ダウンロード</a>
@@ -25,6 +26,7 @@
             <th scope="col">Eメールアドレス</th>
             <th scope="col">質問１</th>
             <th scope="col">質問２</th>
+            <th scope="col">質問３</th>
             </tr>
           </thead>
     <tbody>
@@ -37,7 +39,8 @@
       <td>{{answer.address}}</td>
       <td>{{answer.email}}</td>
       <td>{{answer.question1}}</td>
-      <td>{{answer.question2}}点</td>
+      <td>{{answer.question2}}</td>
+      <td>{{answer.get_question3_display}}</td>
   </tr>
     {% endfor %}
     </tbody>

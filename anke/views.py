@@ -53,9 +53,9 @@ def ankeExport(request):
     filename = urllib.parse.quote((u'アンケート回答リスト.csv').encode("utf8"))
     response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
     writer = csv.writer(response)
-    writer.writerow(['回答日', 'ID', '手段', '氏名', '住所', 'Eメールアドレス', '質問１', '質問２', ])
+    writer.writerow(['回答日', 'ID', '手段', '氏名', '住所', 'Eメールアドレス', '質問１', '質問２', '質問３'])
     for answer in data:
-        writer.writerow([answer.created, answer.user, answer.status, answer.name, answer.address, answer.email, answer.question1, answer.question2])
+        writer.writerow([answer.created, answer.user, answer.status, answer.name, answer.address, answer.email, answer.question1, answer.question2, answer.question3])
     return response
 
 @login_required
