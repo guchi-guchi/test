@@ -13,7 +13,7 @@
     </style>
   </head>
   <body style="font-family: 'Kosugi Maru', sans-serif;">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
             <a class="navbar-brand" href="{% url 'anke:index' %}">久留米DMO</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
                 <a class="nav-item nav-link active" href="{% url 'anke:index' %}">ホーム<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="{% url 'anke:anke' %}">アンケート</a>
                 {% block navbar %}
-                <a class="nav-item nav-link active" href="{% url 'anke:list' %}">管理者向け</a>
+                <a class="nav-item nav-link active" href="{% url 'anke:table' %}">管理者向け</a>
                 <a class="nav-item nav-link active" href="{% url 'account_logout' %}">ログアウト</a>
               </div>
             </div>

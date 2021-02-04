@@ -10,6 +10,18 @@ class Anke(models.Model):
         ('off', '紙'),
     )
 
+    SHOP_CHOICES = (
+        ('ka', 'カパテリア'),
+        ('be', '紅乙女酒造'),
+        ('ky', '巨峰ワイン'),
+        ('ju', '樹蘭マルシェ'),
+    )
+
+    SEX_CHOICES = (
+        ('m', '男性'),
+        ('f', '女性'),
+    )
+
     TRAFFIC_CHOICES = (
         ('m-car','マイカー'),
         ('r-car','レンタカー'),
@@ -22,6 +34,9 @@ class Anke(models.Model):
                              related_name='anke_created',
                              on_delete=models.PROTECT, verbose_name=('ユーザー'), null=True, blank=True)
     name = models.CharField(max_length=200, verbose_name=('氏名'))
+    shop = models.CharField(max_length=300, null=True, verbose_name=('お店'), choices=SHOP_CHOICES)
+    age = models.PositiveIntegerField(null=True, verbose_name=('年齢'))
+    sex = models.CharField(max_length=200, null=True, verbose_name=('性別'), choices=SEX_CHOICES)
     address = models.CharField(blank=True, null=True, max_length=300, verbose_name=('住所'))
     email = models.EmailField(verbose_name=('Eメールアドレス'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=('回答日時'), null=True)
@@ -33,6 +48,9 @@ class Anke(models.Model):
     class Meta:
         verbose_name = ('アンケート')
         verbose_name_plural = ('アンケート')
+        permissions = [
+            ('special_status1', 'kapateria'),
+        ]
 
     def __str__(self):
         return self.name

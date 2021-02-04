@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container">
-<h3 class="mt-3 text-success">アンケート回答リスト</h3>
+<h3 class="mt-3 text-warning">アンケート回答リスト（カパテリア）</h3>
     <div class="questions">
       <h5>☆質問リスト</h5>
       <ul  style="list-style: none;">
@@ -14,19 +14,15 @@
         <li>質問③：ここまでの移動手段を教えてください。</li>
       </ul>
     </div>
-    <a class="btn btn-primary mb-3" href="{%  url 'anke:export' %}">ダウンロード</a>
+    <a class="btn btn-primary mb-3" href="{%  url 'anke:ka_export' %}">ダウンロード</a>
     <table class="table table-striped">
         <thead>
             <tr>
             <th scope="col">回答日</th>
-            <th scope="col">ID</th>
             <th scope="col">手段</th>
-            <th scope="col">氏名</th>
             <th scope="col">店舗</th>
             <th scope="col">性別</th>
             <th scope="col">年齢</th>
-            <th scope="col">住所</th>
-            <th scope="col">Eメールアドレス</th>
             <th scope="col">質問１</th>
             <th scope="col">質問２</th>
             <th scope="col">質問３</th>
@@ -36,14 +32,10 @@
     {% for answer in data %}
     <tr　scope="row">
       <td>{{answer.created|date}}</td>
-      <td>{{answer.user}}</td>
       <td>{{answer.get_status_display}}</td>
-      <td>{{answer.name}}</td>
       <td>{{answer.get_shop_display}}</td>
       <td>{{answer.get_sex_display}}</td>
       <td>{{answer.age}}</td>
-      <td>{{answer.address}}</td>
-      <td>{{answer.email}}</td>
       <td>{{answer.question1}}</td>
       <td>{{answer.question2}}</td>
       <td>{{answer.get_question3_display}}</td>

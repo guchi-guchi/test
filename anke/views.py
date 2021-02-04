@@ -4,8 +4,11 @@ from django.core.mail import send_mail, send_mass_mail, BadHeaderError
 from anke.models import Anke
 from anke.forms import AnkeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import permission_required
+from django.views.generic import ListView, DetailView
 import csv
 import io
 import urllib
@@ -41,9 +44,18 @@ def ankeView(request):
 
 
 @staff_member_required
+@login_required
 def ankeList(request):
     data = Anke.objects.all()
     return render(request, 'anke/list.html', {'data': data})
+
+
+class AnkeKapaList(PermissionRequiredMixin, LoginRequiredMixin, ListView):
+    model = Anke
+    queryset = Anke.objects.filter(shop='ka')
+    template_name = 'anke/ka_list.html'
+    context_object_name = 'data'
+    permission_required = 'anke.special_status1'
 
 
 @staff_member_required
@@ -58,6 +70,24 @@ def ankeExport(request):
         writer.writerow([answer.created, answer.user, answer.status, answer.name, answer.address, answer.email, answer.question1, answer.question2, answer.question3])
     return response
 
+
+@permission_required('anke.special_status1')
+@login_required
+def ankeKapaExport(request):
+    data = Anke.objects.filter(shop='ka')
+    response = HttpResponse(content_type='text/csv; charset=Shift-JIS')
+    filename = urllib.parse.quote((u'アンケート回答リスト_カパテリア.csv').encode("utf8"))
+    response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
+    writer = csv.writer(response)
+    writer.writerow(['回答日', '手段', '店舗', '性別', '年齢', '質問１', '質問２', '質問３'])
+    for answer in data:
+        writer.writerow([answer.created, answer.status, answer.shop, answer.sex, answer.age , answer.question1, answer.question2, answer.question3])
+    return response
+
 @login_required
 def giftView(request):
     return render(request, 'anke/gift.html')
+
+@login_required
+def tableView(request):
+    return render(request, 'anke/table.html')

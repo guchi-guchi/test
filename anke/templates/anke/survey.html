@@ -5,13 +5,13 @@
 
 {% block content %}
 <div class="container">
-<h2 class="mt-3 text-success">アンケート</h2>
+<h2 class="mt-3 text-warning">観光調査アンケート</h2>
   <p>ご回答よろしくお願いします。</p>
   <form  method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button class="btn btn-outline-success" type="submit">回答する</button>
+    <button class="btn btn-warning" type="submit">回答する</button>
   </form>
-  <p class="mt-4"><a href="{% url 'anke:list' %}">データベース<span class="small">（管理者のみアクセス可能）</span></a></p>
+  <p class="mt-4"><a class="text-success" href="{% url 'anke:table' %}">データベース<span class="small">（管理者のみアクセス可能）</span></a></p>
 </div>
 {% endblock content %}

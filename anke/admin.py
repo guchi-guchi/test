@@ -3,7 +3,7 @@ from anke.models import Anke
 
 class AnkeAdmin(admin.ModelAdmin):
     model = Anke
-    list_display = ('name','address', 'email')
+    list_display = ('name','shop', 'sex', 'age', 'address', 'email')
     
     def save_model(self, request, obj, form, change):
         if not obj.user:
@@ -14,5 +14,5 @@ class AnkeAdmin(admin.ModelAdmin):
 admin.site.register(Anke, AnkeAdmin)
 
 admin.site.site_header = "久留米DMOアンケートサイト"
-admin.site.index_title = '投稿画面'                
+admin.site.index_title = '入力・編集画面'                
 admin.site.site_title = '久留米DMOアンケート：管理サイト' 

@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}久留米DMOアンケートサイト{% endblock %}
 {% block content %}
-<div class="container mt-4" style="font-family: 'Hachi Maru Pop', cursive;">
-    <h1>割引クーポン</h1>
+<div class="container my-4" style="font-family: 'Hachi Maru Pop', cursive;">
+    <h2>割引クーポン</h2>
+    <p>こちらの画面を各店舗にて提示すると、割引が受けられます。</p>
+    <img src="{% static 'anke/img/undraw_credit_card_payment_12va.svg' %}" class="img-fluid" width=400rem height=auto alt="">
 </div>
 {% endblock content %}

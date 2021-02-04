@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}アンケートリスト{% endblock %}
+
+{% block content %}
+<div class="container">
+<h3 class="my-3 text-warning">ご協力事業者様リスト</h3>
+<a class="btn btn-warning my-2" href="{%  url 'anke:list' %}">久留米DMO</a>
+<a class="btn btn-warning my-2" href="{%  url 'anke:ka_list' %}">カパテリア</a>
+</div>
+{% endblock content %}
