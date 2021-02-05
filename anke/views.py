@@ -25,8 +25,8 @@ def ankeView(request):
         if form.is_valid():
             subject = form.cleaned_data['name']
             from_email = form.cleaned_data['email']
-            message1 = (subject, f"「{subject}」さまがアンケートに回答されました。", from_email, ['kurumedmo@gmail.com'])
-            message2 = (subject, f"「{subject}」 さま \n ご回答ありがとうございます。\n 特設ページはこちらです→ http://127.0.0.1:8000/gift/ \n ", from_email, [from_email])
+            message1 = (subject, f"「{subject}」さまがアンケートに回答されました。", from_email, ['s-shotaro@berraquera-jp.com'])
+            message2 = (subject, f"「{subject}」 さま \n ご回答ありがとうございます。\n 特設ページはこちらです→ https://kurumedmo-survey.herokuapp.com/gift/ \n ", from_email, [from_email])
             try:
                 send_mass_mail((message1, message2), fail_silently=False)
             except BadHeaderError:
@@ -62,7 +62,6 @@ class AnkeKapaList(PermissionRequiredMixin, LoginRequiredMixin, ListView):
 @staff_member_required
 def ankeExport(request):
     data = Anke.objects.all()
-    
     response = HttpResponse(content_type='text/csv; charset=Shift-JIS')
     filename = urllib.parse.quote((u'アンケート回答リスト.csv').encode("utf8"))
     response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
