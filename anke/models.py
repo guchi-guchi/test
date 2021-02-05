@@ -3,6 +3,20 @@ from django.utils import timezone
 from django.conf import settings
 
 
+class Traffic(models.Model):
+    name = models.CharField(max_length=255, verbose_name=('交通手段'))
+    slug = models.SlugField(unique=True, verbose_name=('スラグ'))
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name=('作成日時'))
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = ('交通')
+        verbose_name_plural = ('交通')
+
+
+
 class Anke(models.Model):
     
     STATUS_CHOICES = (
@@ -22,14 +36,6 @@ class Anke(models.Model):
         ('f', '女性'),
     )
 
-    TRAFFIC_CHOICES = (
-        ('m-car','マイカー'),
-        ('r-car','レンタカー'),
-        ('jr','ＪＲ'),
-        ('r-bus','路線バス'),
-        ('s-bus','観光バス'),
-        ('others','その他'),
-    )
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name='anke_created',
                              on_delete=models.PROTECT, verbose_name=('ユーザー'), null=True, blank=True)
@@ -43,7 +49,7 @@ class Anke(models.Model):
     status = models.CharField(max_length=200, choices=STATUS_CHOICES, verbose_name='回答手段', null=True, default='on')
     question1 = models.TextField(blank=True, null=True, verbose_name=('質問①'))
     question2 = models.TextField(blank=True, null=True, verbose_name=('質問②'))
-    question3 = models.CharField(max_length=200, choices=TRAFFIC_CHOICES, verbose_name='質問③', null=True, blank=True)
+    question3 = models.ManyToManyField(Traffic, max_length=200, verbose_name='質問③', blank=True)
 
     class Meta:
         verbose_name = ('アンケート')

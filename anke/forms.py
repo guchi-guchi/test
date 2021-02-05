@@ -1,5 +1,5 @@
-from django.forms import ModelForm, TextInput, Textarea, Select, EmailInput, RadioSelect, NumberInput
-from anke.models import Anke
+from django.forms import *
+from anke.models import Anke, Traffic
 
 
 class AnkeForm(ModelForm):
@@ -7,7 +7,8 @@ class AnkeForm(ModelForm):
     class Meta:
         model = Anke
         exclude = ('user',)
-        fields = ('name', 'shop', 'sex', 'age', 'address', 'email', 'question1', 'question2','question3')
+        fields = ('name', 'shop', 'sex', 'age', 'address', 'email', 'question1', 'question2', 'question3')
+        question3 = ModelMultipleChoiceField(queryset=Traffic.objects.all())
         widgets = {
             'name': TextInput(attrs={
                 'placeholder': 'フルネームで記入して下さい',
@@ -33,7 +34,7 @@ class AnkeForm(ModelForm):
             'question2': TextInput(attrs={
                 'placeholder': '自由に記入して下さい',
             }),
-            'question3': RadioSelect(attrs={
+            'question3': CheckboxSelectMultiple(attrs={
                 'placeholder': '選択してください',
             }),
         }
@@ -46,5 +47,5 @@ class AnkeForm(ModelForm):
             'email': 'Eメールアドレス',
             'question1': '質問①：耳納北麓エリアで一番好きな所は？（例：施設、お店、風景など）',
             'question2': '質問②：このエリアに来る前に、比較した場所があったら教えてください。',
-            'question3': '質問③：ここまでの移動手段を教えてください。',
+            'question3': '質問③：ここまでの移動手段を教えてください(複数選択可)。',
         }

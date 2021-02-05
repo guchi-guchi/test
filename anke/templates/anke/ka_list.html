@@ -38,7 +38,10 @@
       <td>{{answer.age}}</td>
       <td>{{answer.question1}}</td>
       <td>{{answer.question2}}</td>
-      <td>{{answer.get_question3_display}}</td>
+      <td>{% for traffic in answer.question3.all %}
+        「{{traffic.name}}」
+        {% endfor %}
+      </td>
   </tr>
     {% endfor %}
     </tbody>

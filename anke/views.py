@@ -13,7 +13,7 @@ import csv
 import io
 import urllib
 
-
+@login_required 
 def index(request):
     return render(request, "anke/index.html")
 
@@ -34,6 +34,7 @@ def ankeView(request):
             survey = form.save(commit=False)
             survey.user = request.user
             survey.save()
+            form.save_m2m()
             return redirect('anke:index')
         else:
             params['message'] = '再入力して下さい'
@@ -61,13 +62,14 @@ class AnkeKapaList(PermissionRequiredMixin, LoginRequiredMixin, ListView):
 @staff_member_required
 def ankeExport(request):
     data = Anke.objects.all()
+    
     response = HttpResponse(content_type='text/csv; charset=Shift-JIS')
     filename = urllib.parse.quote((u'アンケート回答リスト.csv').encode("utf8"))
     response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
     writer = csv.writer(response)
     writer.writerow(['回答日', 'ID', '手段', '氏名', '住所', 'Eメールアドレス', '質問１', '質問２', '質問３'])
     for answer in data:
-        writer.writerow([answer.created, answer.user, answer.status, answer.name, answer.address, answer.email, answer.question1, answer.question2, answer.question3])
+        writer.writerow([answer.created, answer.user, answer.status, answer.name, answer.address, answer.email, answer.question1, answer.question2, answer.question3.all()])
     return response
 
 
@@ -81,7 +83,7 @@ def ankeKapaExport(request):
     writer = csv.writer(response)
     writer.writerow(['回答日', '手段', '店舗', '性別', '年齢', '質問１', '質問２', '質問３'])
     for answer in data:
-        writer.writerow([answer.created, answer.status, answer.shop, answer.sex, answer.age , answer.question1, answer.question2, answer.question3])
+        writer.writerow([answer.created, answer.status, answer.shop, answer.sex, answer.age , answer.question1, answer.question2, answer.question3.all()])
     return response
 
 @login_required
