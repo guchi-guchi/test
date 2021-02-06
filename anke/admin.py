@@ -3,7 +3,7 @@ from anke.models import *
 
 class AnkeAdmin(admin.ModelAdmin):
     model = Anke
-    list_display = ('name','shop', 'sex', 'age', 'address', 'email')
+    list_display = ('name','shop', 'sex', 'age', 'email')
     
     def save_model(self, request, obj, form, change):
         if not obj.user:

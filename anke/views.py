@@ -4,10 +4,9 @@ from django.core.mail import send_mail, send_mass_mail, BadHeaderError
 from anke.models import Anke
 from anke.forms import AnkeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import permission_required
-from django.views.generic import ListView, DetailView
+
 import csv
 import io
 import urllib
