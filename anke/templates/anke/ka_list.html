@@ -56,14 +56,10 @@
     {% for answer in data %}
     <tr　scope="row">
       <td>{{answer.created|date}}</td>
-      <td>{{answer.user}}</td>
       <td>{{answer.get_status_display}}</td>
-      <td>{{answer.name}}</td>
       <td>{{answer.get_shop_display}}</td>
       <td>{{answer.get_sex_display}}</td>
       <td>{{answer.age}}</td>
-      <td>{{answer.address}}</td>
-      <td>{{answer.email}}</td>
       <td>{{answer.get_question1_display}}</td>
       <td>{{answer.question2}}</td>
       <td>{{answer.question3}}</td>
