@@ -12,8 +12,8 @@ class Traffic(models.Model):
         return self.name
     
     class Meta:
-        verbose_name = ('交通')
-        verbose_name_plural = ('交通')
+        verbose_name = ('質問３（交通手段）')
+        verbose_name_plural = ('質問３（交通手段）')
 
 
 class Person(models.Model):
@@ -25,8 +25,8 @@ class Person(models.Model):
         return self.name
     
     class Meta:
-        verbose_name = ('人物')
-        verbose_name_plural = ('人物')
+        verbose_name = ('質問４（人物）')
+        verbose_name_plural = ('質問４（人物）')
 
 
 class Purpose(models.Model):
@@ -38,8 +38,8 @@ class Purpose(models.Model):
         return self.name
     
     class Meta:
-        verbose_name = ('目的')
-        verbose_name_plural = ('目的')
+        verbose_name = ('質問５（目的）')
+        verbose_name_plural = ('質問５（目的）')
 
 
 class Media(models.Model):
@@ -51,8 +51,8 @@ class Media(models.Model):
         return self.name
     
     class Meta:
-        verbose_name = ('メディア')
-        verbose_name_plural = ('メディア')
+        verbose_name = ('質問６（メディア）')
+        verbose_name_plural = ('質問６（メディア）')
 
 
 
