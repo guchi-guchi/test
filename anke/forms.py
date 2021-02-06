@@ -31,8 +31,8 @@ class AnkeForm(ModelForm):
             'email': EmailInput(attrs={
                 'placeholder': '普段ご利用のEメールアドレスをご入力ください',
             }),
-            'question1': TextInput(attrs={
-                'placeholder': '自由に記入して下さい',
+            'question1': NumberInput(attrs={
+                'placeholder': '数字を入力してください',
             }),
             'question2': TextInput(attrs={
                 'placeholder': '自由に記入して下さい',
@@ -57,7 +57,7 @@ class AnkeForm(ModelForm):
             'age': 'ご年齢',
             'address': 'ご住所',
             'email': 'Eメールアドレス',
-            'question1': '質問①：耳納北麓エリアで一番好きな所は？（例：施設、お店、風景など）',
+            'question1': '質問①：耳納北麓エリアに来るのは何回目ですか？',
             'question2': '質問②：このエリアに来る前に、比較した場所があったら教えてください。',
             'question3': '質問③：本日の移動手段は？',
             'question4': '質問④：本日は、どなたとご一緒ですか？(複数選択可)。',
