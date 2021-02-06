@@ -31,8 +31,8 @@ class AnkeForm(ModelForm):
             'email': EmailInput(attrs={
                 'placeholder': '普段ご利用のEメールアドレスをご入力ください',
             }),
-            'question1': RadioSelect(attrs={
-                'placeholder': '数字を入力してください。地元の方などで見当がつかない方は空欄で結構です。',
+            'question1': Select(attrs={
+                'placeholder': '数字を入力してください。',
             }),
             'question2': TextInput(attrs={
                 'placeholder': '自由に記入して下さい',
@@ -52,10 +52,10 @@ class AnkeForm(ModelForm):
             'question7': TextInput(attrs={
                 'placeholder': '自由に記入して下さい',
             }),
-            'question8': RadioSelect(attrs={
+            'question8': Select(attrs={
                 'placeholder': '金額の数字を入力してください',
             }),
-            'question9': RadioSelect(attrs={
+            'question9': Select(attrs={
                 'placeholder': '金額の数字を入力してください',
             }),
             'question10': TextInput(attrs={
@@ -79,7 +79,7 @@ class AnkeForm(ModelForm):
         }
         labels = {
             'name': 'お名前',
-            'shop': '現在ご来店の場所',
+            'shop': 'ご来店の店舗名',
             'sex': '性別',
             'age': 'ご年齢',
             'address': 'ご住所',
