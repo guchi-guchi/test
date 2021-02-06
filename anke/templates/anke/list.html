@@ -68,7 +68,7 @@
       <td>{{answer.age}}</td>
       <td>{{answer.address}}</td>
       <td>{{answer.email}}</td>
-      <td>{{answer.question1}}</td>
+      <td>{{answer.get_question1_display}}</td>
       <td>{{answer.question2}}</td>
       <td>{{answer.question3}}</td>
       <td>{% for friend in answer.question4.all %}
@@ -84,8 +84,8 @@
         {% endfor %}
       </td>
       <td>{{answer.question7}}</td>
-      <td>{{answer.question8}}</td>
-      <td>{{answer.question9}}</td>
+      <td>{{answer.get_question8_display}}</td>
+      <td>{{answer.get_question9_display}}</td>
       <td>{{answer.question10}}</td>
       <td>{{answer.question11}}</td>
       <td>{{answer.question12}}</td>
