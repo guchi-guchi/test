@@ -1,5 +1,5 @@
 from django.forms import *
-from anke.models import Anke, Traffic
+from anke.models import *
 
 
 class AnkeForm(ModelForm):
@@ -7,8 +7,11 @@ class AnkeForm(ModelForm):
     class Meta:
         model = Anke
         exclude = ('user',)
-        fields = ('name', 'shop', 'sex', 'age', 'address', 'email', 'question1', 'question2', 'question3')
-        question3 = ModelMultipleChoiceField(queryset=Traffic.objects.all())
+        fields = ('name', 'shop', 'sex', 'age', 'address', 'email', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6')
+        question3 = ModelChoiceField(queryset=Traffic.objects.all())
+        question4 = ModelMultipleChoiceField(queryset=Person.objects.all())
+        question5 = ModelMultipleChoiceField(queryset=Purpose.objects.all())
+        question6 = ModelChoiceField(queryset=Media.objects.all())
         widgets = {
             'name': TextInput(attrs={
                 'placeholder': 'フルネームで記入して下さい',
@@ -34,7 +37,16 @@ class AnkeForm(ModelForm):
             'question2': TextInput(attrs={
                 'placeholder': '自由に記入して下さい',
             }),
-            'question3': CheckboxSelectMultiple(attrs={
+            'question3': Select(attrs={
+                'placeholder': '選択してください',
+            }),
+            'question4': CheckboxSelectMultiple(attrs={
+                'placeholder': '選択してください',
+            }),
+            'question5': CheckboxSelectMultiple(attrs={
+                'placeholder': '選択してください',
+            }),
+            'question6': Select(attrs={
                 'placeholder': '選択してください',
             }),
         }
@@ -47,5 +59,8 @@ class AnkeForm(ModelForm):
             'email': 'Eメールアドレス',
             'question1': '質問①：耳納北麓エリアで一番好きな所は？（例：施設、お店、風景など）',
             'question2': '質問②：このエリアに来る前に、比較した場所があったら教えてください。',
-            'question3': '質問③：ここまでの移動手段を教えてください(複数選択可)。',
+            'question3': '質問③：本日の移動手段は？',
+            'question4': '質問④：本日は、どなたとご一緒ですか？(複数選択可)。',
+            'question5': '質問⑤：本日の主な目的は？(複数選択可)。',
+            'question6': '質問⑥：何をご覧になって来られましたか？',
         }

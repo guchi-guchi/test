@@ -1,5 +1,5 @@
 from django.contrib import admin
-from anke.models import Anke, Traffic
+from anke.models import *
 
 class AnkeAdmin(admin.ModelAdmin):
     model = Anke
@@ -12,6 +12,9 @@ class AnkeAdmin(admin.ModelAdmin):
         super(AnkeAdmin, self).save_model(request, obj, form, change)
 
 admin.site.register(Traffic)
+admin.site.register(Person)
+admin.site.register(Purpose)
+admin.site.register(Media)
 admin.site.register(Anke, AnkeAdmin)
 
 admin.site.site_header = "久留米DMOアンケートサイト"

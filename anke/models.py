@@ -16,6 +16,45 @@ class Traffic(models.Model):
         verbose_name_plural = ('交通')
 
 
+class Person(models.Model):
+    name = models.CharField(max_length=255, verbose_name=('同伴者'))
+    slug = models.SlugField(unique=True, verbose_name=('スラグ'))
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name=('作成日時'))
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = ('人物')
+        verbose_name_plural = ('人物')
+
+
+class Purpose(models.Model):
+    name = models.CharField(max_length=255, verbose_name=('目的'))
+    slug = models.SlugField(unique=True, verbose_name=('スラグ'))
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name=('作成日時'))
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = ('目的')
+        verbose_name_plural = ('目的')
+
+
+class Media(models.Model):
+    name = models.CharField(max_length=255, verbose_name=('メディア種別'))
+    slug = models.SlugField(unique=True, verbose_name=('スラグ'))
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name=('作成日時'))
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = ('メディア')
+        verbose_name_plural = ('メディア')
+
+
 
 class Anke(models.Model):
     
@@ -47,9 +86,12 @@ class Anke(models.Model):
     email = models.EmailField(verbose_name=('Eメールアドレス'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=('回答日時'), null=True)
     status = models.CharField(max_length=200, choices=STATUS_CHOICES, verbose_name='回答手段', null=True, default='on')
-    question1 = models.TextField(blank=True, null=True, verbose_name=('質問①'))
+    question1 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問①'))
     question2 = models.TextField(blank=True, null=True, verbose_name=('質問②'))
-    question3 = models.ManyToManyField(Traffic, max_length=200, verbose_name='質問③', blank=True)
+    question3 = models.ForeignKey(Traffic, on_delete=models.PROTECT, verbose_name='質問③', blank=True, null=True)
+    question4 = models.ManyToManyField(Person, verbose_name='質問④', blank=True)
+    question5 = models.ManyToManyField(Purpose, verbose_name='質問⑤', blank=True)
+    question6 = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='質問⑥', blank=True, null=True)
 
     class Meta:
         verbose_name = ('アンケート')

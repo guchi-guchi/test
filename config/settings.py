@@ -136,7 +136,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend', # new
 )
 
-LOGIN_REDIRECT_URL = 'anke:index' # new
+LOGIN_REDIRECT_URL = 'anke:anke' # new
 ACCOUNT_LOGOUT_REDIRECT = 'anke:index' # new
 
 SOCIALACCOUNT_PROVIDERS = {
