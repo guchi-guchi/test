@@ -32,7 +32,7 @@ class AnkeForm(ModelForm):
                 'placeholder': '普段ご利用のEメールアドレスをご入力ください',
             }),
             'question1': NumberInput(attrs={
-                'placeholder': '数字を入力してください',
+                'placeholder': '数字を入力してください。地元の方などで見当がつかない方は空欄で結構です。',
             }),
             'question2': TextInput(attrs={
                 'placeholder': '自由に記入して下さい',

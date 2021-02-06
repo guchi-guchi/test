@@ -80,7 +80,7 @@ class Anke(models.Model):
                              related_name='anke_created',
                              on_delete=models.PROTECT, verbose_name=('ユーザー'), null=True, blank=True)
     name = models.CharField(max_length=200, verbose_name=('氏名'))
-    shop = models.CharField(max_length=300, null=True, verbose_name=('お店'), choices=SHOP_CHOICES)
+    shop = models.CharField(max_length=300, default='others', verbose_name=('お店'), choices=SHOP_CHOICES)
     age = models.PositiveIntegerField(null=True, verbose_name=('年齢'), blank=True)
     sex = models.CharField(max_length=200, verbose_name=('性別'), choices=SEX_CHOICES, default='f')
     address = models.CharField(blank=True, null=True, max_length=300, verbose_name=('住所'))
