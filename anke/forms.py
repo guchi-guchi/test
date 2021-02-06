@@ -31,7 +31,7 @@ class AnkeForm(ModelForm):
             'email': EmailInput(attrs={
                 'placeholder': '普段ご利用のEメールアドレスをご入力ください',
             }),
-            'question1': NumberInput(attrs={
+            'question1': RadioSelect(attrs={
                 'placeholder': '数字を入力してください。地元の方などで見当がつかない方は空欄で結構です。',
             }),
             'question2': TextInput(attrs={
@@ -52,10 +52,10 @@ class AnkeForm(ModelForm):
             'question7': TextInput(attrs={
                 'placeholder': '自由に記入して下さい',
             }),
-            'question8': NumberInput(attrs={
+            'question8': RadioSelect(attrs={
                 'placeholder': '金額の数字を入力してください',
             }),
-            'question9': NumberInput(attrs={
+            'question9': RadioSelect(attrs={
                 'placeholder': '金額の数字を入力してください',
             }),
             'question10': TextInput(attrs={
@@ -91,8 +91,8 @@ class AnkeForm(ModelForm):
             'question5': '質問5：本日の主な目的は？(複数選択可)。',
             'question6': '質問6：何をご覧になって来られましたか？(複数選択可)',
             'question7': '質問7：この後耳納北麓エリア以外に訪れる予定の場所があれば、ご記入ください。',
-            'question8': '質問8：耳納北麓エリアで食事に使う費用はいくらくらいですか？',
-            'question9': '質問9：耳納北麓エリアで土産など買い物に使う費用はいくらくらいですか？',
+            'question8': '質問8：耳納北麓エリアで食事に使う費用はいくらですか？',
+            'question9': '質問9：耳納北麓エリアで土産など買い物に使う費用はいくらですか？',
             'question10': '質問10：耳納北麓エリアで一番好きなところは？（例：施設、お店、風景など）',
             'question11': '質問11：このエリアに来ると決めた理由は何ですか？',
             'question12': '質問12：今まで旅行した中で、一番好きだった場所はどこですか？',

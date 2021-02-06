@@ -63,6 +63,23 @@ class Anke(models.Model):
         ('off', '紙'),
     )
 
+    VISIT_CHOICES = (
+        ('0', '初めて'),
+        ('1', '２回目〜５回目'),
+        ('2', '６回目〜１０回目'),
+        ('3', '１０回以上'),
+        ('4', '地元住民'),
+    )
+    
+    MONEY_CHOICES = (
+        ('0', '1000円未満'),
+        ('1', '1000円以上〜2000円未満'),
+        ('2', '2000円以上〜3000円未満'),
+        ('3', '4000円以上〜5000円未満'),
+        ('4', '5000円以上〜10000円未満'),
+        ('5', '10000円以上'),
+    )
+
     SHOP_CHOICES = (
         ('ka', 'カパテリア'),
         ('be', '紅乙女酒造'),
@@ -87,15 +104,15 @@ class Anke(models.Model):
     email = models.EmailField(verbose_name=('Eメールアドレス'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=('回答日時'), null=True)
     status = models.CharField(max_length=200, choices=STATUS_CHOICES, verbose_name='回答手段', null=True, default='on')
-    question1 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問1'))
+    question1 = models.CharField(max_length=300, blank=True, choices=VISIT_CHOICES, default='0', verbose_name=('質問1'))
     question2 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問2'))
     question3 = models.ForeignKey(Traffic, on_delete=models.PROTECT, verbose_name='質問3', blank=True, null=True)
     question4 = models.ManyToManyField(Person, verbose_name='質問4', blank=True)
     question5 = models.ManyToManyField(Purpose, verbose_name='質問5', blank=True)
     question6 = models.ManyToManyField(Media, verbose_name='質問6', blank=True)
     question7 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問7'))
-    question8 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問8'))
-    question9 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問9'))
+    question8 = models.CharField(max_length=300, blank=True, choices=MONEY_CHOICES, default='0', verbose_name=('質問8'))
+    question9 = models.CharField(max_length=300, blank=True, choices=MONEY_CHOICES, default='0', verbose_name=('質問9'))
     question10 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問10'))
     question11 = models.TextField(blank=True, null=True, verbose_name=('質問11'))
     question12 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問12'))
