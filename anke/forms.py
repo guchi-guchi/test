@@ -11,7 +11,7 @@ class AnkeForm(ModelForm):
         question3 = ModelChoiceField(queryset=Traffic.objects.all())
         question4 = ModelMultipleChoiceField(queryset=Person.objects.all())
         question5 = ModelMultipleChoiceField(queryset=Purpose.objects.all())
-        question6 = ModelChoiceField(queryset=Media.objects.all())
+        question6 = ModelMultipleChoiceField(queryset=Media.objects.all())
         widgets = {
             'name': TextInput(attrs={
                 'placeholder': 'フルネームで記入して下さい',
@@ -46,7 +46,7 @@ class AnkeForm(ModelForm):
             'question5': CheckboxSelectMultiple(attrs={
                 'placeholder': '選択してください',
             }),
-            'question6': Select(attrs={
+            'question6': CheckboxSelectMultiple(attrs={
                 'placeholder': '選択してください',
             }),
             'question7': TextInput(attrs={
@@ -89,7 +89,7 @@ class AnkeForm(ModelForm):
             'question3': '質問3：本日の移動手段は？',
             'question4': '質問4：本日は、どなたとご一緒ですか？(複数選択可)。',
             'question5': '質問5：本日の主な目的は？(複数選択可)。',
-            'question6': '質問6：何をご覧になって来られましたか？',
+            'question6': '質問6：何をご覧になって来られましたか？(複数選択可)',
             'question7': '質問7：この後耳納北麓エリア以外に訪れる予定の場所があれば、ご記入ください。',
             'question8': '質問8：耳納北麓エリアで食事に使う費用はいくらくらいですか？',
             'question9': '質問9：耳納北麓エリアで土産など買い物に使う費用はいくらくらいですか？',

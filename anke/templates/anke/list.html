@@ -79,7 +79,10 @@
         「{{purpose.name}}」
         {% endfor %}
       </td>
-      <td>{{answer.question6}}</td>
+      <td>{% for media in answer.question6.all %}
+        「{{media.name}}」
+        {% endfor %}
+      </td>
       <td>{{answer.question7}}</td>
       <td>{{answer.question8}}</td>
       <td>{{answer.question9}}</td>

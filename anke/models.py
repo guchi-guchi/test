@@ -92,7 +92,7 @@ class Anke(models.Model):
     question3 = models.ForeignKey(Traffic, on_delete=models.PROTECT, verbose_name='質問3', blank=True, null=True)
     question4 = models.ManyToManyField(Person, verbose_name='質問4', blank=True)
     question5 = models.ManyToManyField(Purpose, verbose_name='質問5', blank=True)
-    question6 = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='質問6', blank=True, null=True)
+    question6 = models.ManyToManyField(Media, verbose_name='質問6', blank=True)
     question7 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問7'))
     question8 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問8'))
     question9 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問9'))
