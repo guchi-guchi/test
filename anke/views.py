@@ -3,8 +3,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail, send_mass_mail, BadHeaderError
 from anke.models import Anke
 from anke.forms import AnkeForm
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import permission_required
@@ -13,7 +12,6 @@ import csv
 import io
 import urllib
 
-@login_required 
 def index(request):
     return render(request, "anke/index.html")
 
@@ -51,12 +49,11 @@ def ankeList(request):
     return render(request, 'anke/list.html', {'data': data})
 
 
-class AnkeKapaList(PermissionRequiredMixin, LoginRequiredMixin, ListView):
-    model = Anke
-    queryset = Anke.objects.filter(shop='ka')
-    template_name = 'anke/ka_list.html'
-    context_object_name = 'data'
-    permission_required = 'anke.special_status1'
+@permission_required('anke.special_status1')
+@login_required
+def ankeList_ka(request):
+    data = Anke.objects.filter(shop='ka')
+    return render(request, 'anke/ka_list.html', {'data': data})
 
 
 @staff_member_required

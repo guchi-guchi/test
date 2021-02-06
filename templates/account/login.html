@@ -5,15 +5,16 @@
 {% endblock navbar %}
 {% block content %}
   <div class="container mt-2">
-      <h2 class="text-primary">ログイン</h2>
+      <h2 class="text-warning">ログイン</h2>
     <form method="post">
       {% csrf_token %}
       {{ form|crispy }}
       <button type="submit" class="btn btn-outline-primary">ログイン</button>
     </form> 
-    <hr style="border: 0; border-top: 1px solid;visibility: hidden;">
-  <div class="social mt-3" style="display: flex;flex-direction: column;gap: 0.1em;visibility: hidden;height: 0%;">
-    <a class="text-white  btn btn-success" style="display: flex; align-items: center;justify-content: flex-start;width: 180px;" href="{% url 'line_login' %}"><i style="font-size: 1.5rem" class="fab fa-line"></i>&nbsp;Lineでログイン</a>
+    <hr style="border: 0; border-top: 1px solid;">
+    <div class="social my-3" style="display: flex;flex-direction: column;gap: 0.1em;">
+      <p class="text-primary">アンケートのご回答はこちら&nbsp;<i class="fas fa-arrow-circle-down"></i><br><span class=" text-dark small">（LINEでログインしてください）</span></p>
+      <a class="text-white  btn btn-success" style="display: flex; align-items: center;justify-content: flex-start;width: 180px;" href="{% url 'line_login' %}"><i style="font-size: 1.5rem" class="fab fa-line"></i>&nbsp;Lineでログイン</a>
   </div>
 </div>
 {% endblock %}
