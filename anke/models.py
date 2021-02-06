@@ -68,6 +68,7 @@ class Anke(models.Model):
         ('be', '紅乙女酒造'),
         ('ky', '巨峰ワイン'),
         ('ju', '樹蘭マルシェ'),
+        ('others', 'その他'),
     )
 
     SEX_CHOICES = (
@@ -80,18 +81,28 @@ class Anke(models.Model):
                              on_delete=models.PROTECT, verbose_name=('ユーザー'), null=True, blank=True)
     name = models.CharField(max_length=200, verbose_name=('氏名'))
     shop = models.CharField(max_length=300, null=True, verbose_name=('お店'), choices=SHOP_CHOICES)
-    age = models.PositiveIntegerField(null=True, verbose_name=('年齢'))
-    sex = models.CharField(max_length=200, null=True, verbose_name=('性別'), choices=SEX_CHOICES)
+    age = models.PositiveIntegerField(null=True, verbose_name=('年齢'), blank=True)
+    sex = models.CharField(max_length=200, verbose_name=('性別'), choices=SEX_CHOICES, default='f')
     address = models.CharField(blank=True, null=True, max_length=300, verbose_name=('住所'))
     email = models.EmailField(verbose_name=('Eメールアドレス'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=('回答日時'), null=True)
     status = models.CharField(max_length=200, choices=STATUS_CHOICES, verbose_name='回答手段', null=True, default='on')
-    question1 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問①'))
-    question2 = models.TextField(blank=True, null=True, verbose_name=('質問②'))
-    question3 = models.ForeignKey(Traffic, on_delete=models.PROTECT, verbose_name='質問③', blank=True, null=True)
-    question4 = models.ManyToManyField(Person, verbose_name='質問④', blank=True)
-    question5 = models.ManyToManyField(Purpose, verbose_name='質問⑤', blank=True)
-    question6 = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='質問⑥', blank=True, null=True)
+    question1 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問1'))
+    question2 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問2'))
+    question3 = models.ForeignKey(Traffic, on_delete=models.PROTECT, verbose_name='質問3', blank=True, null=True)
+    question4 = models.ManyToManyField(Person, verbose_name='質問4', blank=True)
+    question5 = models.ManyToManyField(Purpose, verbose_name='質問5', blank=True)
+    question6 = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='質問6', blank=True, null=True)
+    question7 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問7'))
+    question8 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問8'))
+    question9 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問9'))
+    question10 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問10'))
+    question11 = models.TextField(blank=True, null=True, verbose_name=('質問11'))
+    question12 = models.CharField(max_length=300, blank=True, null=True, verbose_name=('質問12'))
+    question13 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問13'))
+    question14 = models.TextField(blank=True, null=True, verbose_name=('質問14'))
+    question15 = models.TextField(blank=True, null=True, verbose_name=('質問15'))
+
 
     class Meta:
         verbose_name = ('アンケート')

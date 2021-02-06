@@ -7,7 +7,7 @@ class AnkeForm(ModelForm):
     class Meta:
         model = Anke
         exclude = ('user',)
-        fields = ('name', 'shop', 'sex', 'age', 'address', 'email', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6')
+        fields = ('name', 'shop', 'sex', 'age', 'address', 'email', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13', 'question14', 'question15')
         question3 = ModelChoiceField(queryset=Traffic.objects.all())
         question4 = ModelMultipleChoiceField(queryset=Person.objects.all())
         question5 = ModelMultipleChoiceField(queryset=Purpose.objects.all())
@@ -49,6 +49,33 @@ class AnkeForm(ModelForm):
             'question6': Select(attrs={
                 'placeholder': '選択してください',
             }),
+            'question7': TextInput(attrs={
+                'placeholder': '自由に記入して下さい',
+            }),
+            'question8': NumberInput(attrs={
+                'placeholder': '金額の数字を入力してください',
+            }),
+            'question9': NumberInput(attrs={
+                'placeholder': '金額の数字を入力してください',
+            }),
+            'question10': TextInput(attrs={
+                'placeholder': '自由に記入して下さい',
+            }),
+            'question11': TextInput(attrs={
+                'placeholder': '自由に記入して下さい',
+            }),
+            'question12': TextInput(attrs={
+                'placeholder': '自由に記入して下さい',
+            }),
+            'question13': NumberInput(attrs={
+                'placeholder': '数字を入力してください',
+            }),
+            'question14': TextInput(attrs={
+                'placeholder': '自由に記入して下さい',
+            }),
+            'question15': TextInput(attrs={
+                'placeholder': '自由に記入して下さい',
+            }),
         }
         labels = {
             'name': 'お名前',
@@ -57,10 +84,19 @@ class AnkeForm(ModelForm):
             'age': 'ご年齢',
             'address': 'ご住所',
             'email': 'Eメールアドレス',
-            'question1': '質問①：耳納北麓エリアに来るのは何回目ですか？',
-            'question2': '質問②：このエリアに来る前に、比較した場所があったら教えてください。',
-            'question3': '質問③：本日の移動手段は？',
-            'question4': '質問④：本日は、どなたとご一緒ですか？(複数選択可)。',
-            'question5': '質問⑤：本日の主な目的は？(複数選択可)。',
-            'question6': '質問⑥：何をご覧になって来られましたか？',
+            'question1': '質問1：耳納北麓エリアに来るのは何回目ですか？',
+            'question2': '質問2：このエリアに来る前に、比較した場所があったら教えてください。',
+            'question3': '質問3：本日の移動手段は？',
+            'question4': '質問4：本日は、どなたとご一緒ですか？(複数選択可)。',
+            'question5': '質問5：本日の主な目的は？(複数選択可)。',
+            'question6': '質問6：何をご覧になって来られましたか？',
+            'question7': '質問7：この後耳納北麓エリア以外に訪れる予定の場所があれば、ご記入ください。',
+            'question8': '質問8：耳納北麓エリアで食事に使う費用はいくらくらいですか？',
+            'question9': '質問9：耳納北麓エリアで土産など買い物に使う費用はいくらくらいですか？',
+            'question10': '質問10：耳納北麓エリアで一番好きなところは？（例：施設、お店、風景など）',
+            'question11': '質問11：このエリアに来ると決めた理由は何ですか？',
+            'question12': '質問12：今まで旅行した中で、一番好きだった場所はどこですか？',
+            'question13': '質問13：その場所が100点とすると、このエリアは何点ですか？',
+            'question14': '質問14：その点数にした（減点した）理由は何ですか？',
+            'question15': '質問15：このエリアに欠けてるものがあるとすれば、それは何でしょうか？',
         }

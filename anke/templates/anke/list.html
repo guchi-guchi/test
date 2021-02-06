@@ -9,12 +9,21 @@
     <div class="questions">
       <h5>☆質問リスト</h5>
       <ul  style="list-style: none;">
-        <li>質問①：耳納北麓エリアに来るのは何回目ですか？</li>
-        <li>質問②：このエリアに来る前に、比較した場所があったら教えてください。</li>
-        <li>質問③：本日の移動手段は？</li>
-        <li>質問④：本日は、どなたとご一緒ですか？(複数選択可)。</li>
-        <li>質問⑤：本日の主な目的は？(複数選択可)。</li>
-        <li>質問⑥：何をご覧になって来られましたか？</li>
+        <li>質問１：耳納北麓エリアに来るのは何回目ですか？</li>
+        <li>質問２：このエリアに来る前に、比較した場所があったら教えてください。</li>
+        <li>質問３：本日の移動手段は？</li>
+        <li>質問４：本日は、どなたとご一緒ですか？(複数選択可)。</li>
+        <li>質問５：本日の主な目的は？(複数選択可)。</li>
+        <li>質問６：何をご覧になって来られましたか？</li>
+        <li>質問７：この後耳納北麓エリア以外に訪れる予定の場所があれば、ご記入ください。</li>
+        <li>質問８：耳納北麓エリアで食事に使う費用はいくらくらいですか？</li>
+        <li>質問９：耳納北麓エリアで土産など買い物に使う費用はいくらくらいですか？</li>
+        <li>質問１０：耳納北麓エリアで一番好きなところは？（例：施設、お店、風景など）</li>
+        <li>質問１１：このエリアに来ると決めた理由は何ですか？</li>
+        <li>質問１２：今まで旅行した中で、一番好きだった場所はどこですか？</li>
+        <li>質問１３：その場所が100点とすると、このエリアは何点ですか？</li>
+        <li>質問１４：その点数にした（減点した）理由は何ですか？</li>
+        <li>質問１５：このエリアに欠けてるものがあるとすれば、それは何でしょうか？</li>
       </ul>
     </div>
     <a class="btn btn-primary mb-3" href="{%  url 'anke:export' %}">ダウンロード</a>
@@ -36,6 +45,15 @@
             <th scope="col">質問４</th>
             <th scope="col">質問５</th>
             <th scope="col">質問６</th>
+            <th scope="col">質問７</th>
+            <th scope="col">質問８</th>
+            <th scope="col">質問９</th>
+            <th scope="col">質問１０</th>
+            <th scope="col">質問１１</th>
+            <th scope="col">質問１２</th>
+            <th scope="col">質問１３</th>
+            <th scope="col">質問１４</th>
+            <th scope="col">質問１５</th>
             </tr>
           </thead>
     <tbody>
@@ -62,6 +80,15 @@
         {% endfor %}
       </td>
       <td>{{answer.question6}}</td>
+      <td>{{answer.question7}}</td>
+      <td>{{answer.question8}}</td>
+      <td>{{answer.question9}}</td>
+      <td>{{answer.question10}}</td>
+      <td>{{answer.question11}}</td>
+      <td>{{answer.question12}}</td>
+      <td>{{answer.question13}}</td>
+      <td>{{answer.question14}}</td>
+      <td>{{answer.question15}}</td>
   </tr>
     {% endfor %}
     </tbody>
