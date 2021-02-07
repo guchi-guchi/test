@@ -24,12 +24,12 @@
                 <a class="nav-item nav-link active" href="{% url 'anke:anke' %}">アンケート</a>
                 <a class="nav-item nav-link active" href="https://www.facebook.com/kurumedmo/" target="_blank"><i class="fab fa-facebook mr-1"></i>Facebook</a>
                 <a class="nav-item nav-link active" href="https://www.instagram.com/kurumedmo/" target="_blank"><i class="fab fa-instagram mr-1"></i>Instagram</a>
+                {% if user.is_staff %}
                 <a class="nav-item nav-link active" href="{% url 'anke:table' %}">管理者向け</a>
-                {% block navbar %}
                 <a class="nav-item nav-link active" href="{% url 'account_logout' %}">ログアウト</a>
+                {% endif %}
               </div>
             </div>
-            {% endblock navbar %}
           </nav>
     {% block content %}
     {% endblock %}
