@@ -26,8 +26,10 @@
                 <a class="nav-item nav-link active" href="https://www.instagram.com/kurumedmo/" target="_blank"><i class="fab fa-instagram mr-1"></i>Instagram</a>
                 {% if user.is_staff %}
                 <a class="nav-item nav-link active" href="{% url 'anke:table' %}">管理者向け</a>
-                <a class="nav-item nav-link active" href="{% url 'account_logout' %}">ログアウト</a>
                 {% endif %}
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link active" href="{% url 'account_logout' %}">ログアウト</a>
+                {% endif %} 
               </div>
             </div>
           </nav>
