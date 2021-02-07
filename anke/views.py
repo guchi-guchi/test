@@ -16,14 +16,15 @@ def index(request):
 
 @login_required 
 def ankeView(request):
-    params ={'message': '', 'form': None}
+    replied_ankes = Anke.objects.filter(user=request.user)
+    params ={'message': '', 'form': None, 'replied_ankes': replied_ankes}
     if request.method == 'POST':
         form = AnkeForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             from_email = form.cleaned_data['email']
             message1 = (f"アンケート回答のお知らせ。「{name}」さま", f"「{name}」さまがアンケートに回答されました。", from_email, ['s-shotaro@berraquera-jp.com'])
-            message2 = ("アンケート回答特典クーポンについて", f"「{name}」 さま \n ご回答ありがとうございます。\n クーポンはこちらです→ https://kurumedmo-survey.herokuapp.com/gift/ \n\n リンクが開かない場合はスタッフにこのメールをお見せください。\n　クーポンの代わりとします。 ", from_email, [from_email])
+            message2 = ("アンケート回答特典クーポンについて", f"「{name}」 さま \n ご回答ありがとうございます。\n クーポンはこちらです→ https://kurumedmo-survey.herokuapp.com/gift/ \n\n 「リンクが開かない」場合はスタッフにこのメールをお見せください。\n　クーポンの代わりとします。 ", from_email, [from_email])
             try:
                 send_mass_mail((message1, message2), fail_silently=False)
             except BadHeaderError:
