@@ -83,7 +83,9 @@ def ankeKapaExport(request):
 
 @login_required
 def giftView(request):
-    return render(request, 'anke/gift.html')
+    replied_ankes = Anke.objects.filter(user=request.user)
+    return render(request, 'anke/gift.html', {'replied_ankes': replied_ankes})
+
 
 @login_required
 def tableView(request):

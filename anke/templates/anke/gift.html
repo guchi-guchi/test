@@ -4,10 +4,19 @@
 {% block content %}
 <div class="container my-4" style="font-family: 'Hachi Maru Pop', cursive;">
     <h2 class="text-warning">割引クーポン</h2>
-    {% if user.is_authenticated %}
-    <p class="my-3 lead" style="font-family: 'Kosugi Maru', sans-serif;"><span class="text-primary">{{user.username}}</span>&nbsp;さま</p>
-    {% endif %}
-    <p>こちらの画面を店舗にて提示すると、割引が受けられます。</p>
+    {% for anke in replied_ankes %}
+    {% if forloop.first %}
+    <p class="my-3 lead" style="font-family: 'Kosugi Maru', sans-serif;" ><span class="text-primary">{{anke.user}}</span>&nbsp;さま</p>
+    <p class="my-3">アンケートへのご回答ありがとうございました。</p>
+    <p class="text-info">こちらの画面を店舗にて提示すると、割引が受けられます。</p>
     <img src="{% static 'anke/img/undraw_credit_card_payment_12va.svg' %}" class="img-fluid" width=400rem height=auto alt="">
+    {% endif %}
+    {% empty %}
+    {% if user.is_authenticated %}
+    <p  class="mt-3" style="font-family: 'Kosugi Maru', sans-serif;"><span class="text-danger lead">{{user.username}}</span>&nbsp;さま</p>
+    {% endif %}
+    <p class="text-danger" style="font-family: 'Kosugi Maru', sans-serif;">アンケート未回答。このクーポンを使用するには、アンケートへの回答が必要です。</p>
+    <img src="{% static 'anke/img/undraw_cancel_u1it.svg' %}" class="img-fluid" width=400rem height=auto alt="">
+    {% endfor %}
 </div>
 {% endblock content %}
