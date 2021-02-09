@@ -14,24 +14,21 @@ import urllib
 def index(request):
     return render(request, "anke/index.html")
 
-@login_required 
 def ankeView(request):
-    replied_ankes = Anke.objects.filter(user=request.user)
-    params ={'message': '', 'form': None, 'replied_ankes': replied_ankes}
+    params ={'message': '', 'form': None}
     if request.method == 'POST':
         form = AnkeForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             from_email = form.cleaned_data['email']
             message1 = (f"アンケート回答のお知らせ。「{name}」さま", f"「{name}」さまがアンケートに回答されました。", from_email, ['s-shotaro@berraquera-jp.com'])
-            message2 = ("アンケート回答特典クーポンについて", f"「{name}」 さま \n ご回答ありがとうございます。\n クーポンはこちらです→ https://kurumedmo-survey.herokuapp.com/gift/ \n\n 「リンクが開かない」場合はスタッフにこのメールをお見せください。\n　クーポンの代わりとします。 ", from_email, [from_email])
+            message2 = ("アンケート回答特典クーポンについて", f"「{name}」 さま \n ご回答ありがとうございます。\n\n スタッフにこのメールをお見せください。", from_email, [from_email])
             try:
                 send_mass_mail((message1, message2), fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('無効なヘッダーが見つかりました。')
             survey = form.save(commit=False)
-            survey.user = request.user
-            survey.save()
+            survey = form.save()
             form.save_m2m()
             return redirect('anke:index')
         else:
@@ -49,13 +46,6 @@ def ankeList(request):
     return render(request, 'anke/list.html', {'data': data})
 
 
-@permission_required('anke.special_status1')
-@login_required
-def ankeList_ka(request):
-    data = Anke.objects.filter(shop='ka')
-    return render(request, 'anke/ka_list.html', {'data': data})
-
-
 @staff_member_required
 def ankeExport(request):
     data = Anke.objects.all()
@@ -63,31 +53,11 @@ def ankeExport(request):
     filename = urllib.parse.quote((u'アンケート回答リスト.csv').encode("utf8"))
     response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
     writer = csv.writer(response)
-    writer.writerow(['回答日', 'ID', '手段', '氏名', '住所', 'Eメールアドレス', '質問１', '質問２', '質問３', '質問４', '質問５', '質問６', '質問7', '質問8', '質問9', '質問10', '質問11', '質問12', '質問13', '質問14', '質問15'])
+    writer.writerow(['回答日', '手段', '氏名', '住所', 'Eメールアドレス', '質問１', '質問２', '質問３', '質問４', '質問５', '質問６', '質問7', '質問8', '質問9', '質問10', '質問11', '質問12', '質問13', '質問14', '質問15'])
     for answer in data:
-        writer.writerow([answer.created.date(), answer.user, answer.status, answer.name, answer.address, answer.email, answer.question1, answer.question2, answer.question3, answer.question4.all(), answer.question5.all(), answer.question6.all(), answer.question7, answer.question8, answer.question9, answer.question10, answer.question11, answer.question12, answer.question13, answer.question14, answer.question15])
+        writer.writerow([answer.created.date(), answer.status, answer.name, answer.address, answer.email, answer.question1, answer.question2, answer.question3, answer.question4.all(), answer.question5.all(), answer.question6.all(), answer.question7, answer.question8, answer.question9, answer.question10, answer.question11, answer.question12, answer.question13, answer.question14, answer.question15])
     return response
 
-
-@permission_required('anke.special_status1')
-@login_required
-def ankeKapaExport(request):
-    data = Anke.objects.filter(shop='ka')
-    response = HttpResponse(content_type='text/csv; charset=Shift-JIS')
-    filename = urllib.parse.quote((u'アンケート回答リスト_カパテリア.csv').encode("utf8"))
-    response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
-    writer = csv.writer(response)
-    writer.writerow(['回答日', '手段', '質問１', '質問２', '質問３', '質問４', '質問５', '質問６', '質問7', '質問8', '質問9', '質問10', '質問11', '質問12', '質問13', '質問14', '質問15'])
-    for answer in data:
-        writer.writerow([answer.created.date(), answer.status, answer.question1, answer.question2, answer.question3, answer.question4.all(), answer.question5.all(), answer.question6.all(), answer.question7, answer.question8, answer.question9, answer.question10, answer.question11, answer.question12, answer.question13, answer.question14, answer.question15])
-    return response
-
-@login_required
-def giftView(request):
-    replied_ankes = Anke.objects.filter(user=request.user)
-    return render(request, 'anke/gift.html', {'replied_ankes': replied_ankes})
-
-
-@login_required
+@staff_member_required
 def tableView(request):
     return render(request, 'anke/table.html')

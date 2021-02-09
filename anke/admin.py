@@ -4,12 +4,6 @@ from anke.models import *
 class AnkeAdmin(admin.ModelAdmin):
     model = Anke
     list_display = ('name','shop', 'sex', 'age', 'email')
-    
-    def save_model(self, request, obj, form, change):
-        if not obj.user:
-            obj.user = request.user
-        obj.save()
-        super(AnkeAdmin, self).save_model(request, obj, form, change)
 
 admin.site.register(Traffic)
 admin.site.register(Person)

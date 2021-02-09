@@ -55,7 +55,6 @@ class Media(models.Model):
         verbose_name_plural = ('質問６（メディア）')
 
 
-
 class Anke(models.Model):
     
     STATUS_CHOICES = (
@@ -93,9 +92,6 @@ class Anke(models.Model):
         ('f', '女性'),
     )
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             related_name='anke_created',
-                             on_delete=models.PROTECT, verbose_name=('ユーザー'), null=True, blank=True)
     name = models.CharField(max_length=200, verbose_name=('氏名'))
     shop = models.CharField(max_length=300, default='others', verbose_name=('お店'), choices=SHOP_CHOICES)
     age = models.PositiveIntegerField(null=True, verbose_name=('年齢'), blank=True)
@@ -120,13 +116,9 @@ class Anke(models.Model):
     question14 = models.TextField(blank=True, null=True, verbose_name=('質問14'))
     question15 = models.TextField(blank=True, null=True, verbose_name=('質問15'))
 
-
     class Meta:
         verbose_name = ('アンケート')
         verbose_name_plural = ('アンケート')
-        permissions = [
-            ('special_status1', 'kapateria'),
-        ]
 
     def __str__(self):
         return self.name

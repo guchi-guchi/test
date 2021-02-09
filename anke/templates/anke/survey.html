@@ -6,12 +6,6 @@
 {% block content %}
 <div class="container">
 <h2 class="mt-3 text-warning">観光調査アンケート</h2>
-{% for anke in replied_ankes %}
-    {% if forloop.first %}
-    <p class="mt-3 text-secondary"><span class="text-primary">{{anke.user}}</span>さま。アンケートにご回答いただき、ありがとうございました。</p>
-    <h2 class="my-3 text-primary" style="font-family: 'Kosugi Maru', sans-serif;" ><a href="{% url 'anke:gift' %}">クーポンはこちら!<i class="far fa-hand-point-left"></i></a></h2>
-    {% endif %}
-  {% endfor %}
   <p class="mt-3">*印の質問は必須項目です。<br>&nbsp;その他は空欄でも結構です。</p>
   <form  method="post">
     {% csrf_token %}

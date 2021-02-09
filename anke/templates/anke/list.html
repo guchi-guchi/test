@@ -31,7 +31,6 @@
         <thead>
             <tr>
             <th scope="col">回答日</th>
-            <th scope="col">ID</th>
             <th scope="col">手段</th>
             <th scope="col">氏名</th>
             <th scope="col">店舗</th>
@@ -60,7 +59,6 @@
     {% for answer in data %}
     <tr　scope="row">
       <td>{{answer.created|date}}</td>
-      <td>{{answer.user}}</td>
       <td>{{answer.get_status_display}}</td>
       <td>{{answer.name}}</td>
       <td>{{answer.get_shop_display}}</td>
