@@ -12,9 +12,9 @@
     {{ form|crispy }}
     <button class="btn btn-warning" type="submit">回答する</button>
   </form>
-  <h6 class="text-primary mt-3">「回答する」ボタンを押すと<br>クーポンのURLが記載されたメールが<br>届きますのでご確認ください。</h6>
+  <h6 class="text-primary my-3">「回答する」ボタンを押すと<br>通知のメールが届きますので<br>ご確認ください。</h6>
   {% if user.is_staff %}
-  <p class="mt-3"><a class="text-success" href="{% url 'anke:table' %}">データベース<span class="small">（管理者のみアクセス可能）</span></a></p>
+  <p><a class="text-success" href="{% url 'anke:table' %}">データベース<span class="small">（管理者のみアクセス可能）</span></a></p>
   {% endif %}
 </div>
 {% endblock content %}
