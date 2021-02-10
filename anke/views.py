@@ -22,7 +22,7 @@ def ankeView(request):
             name = form.cleaned_data['name']
             from_email = form.cleaned_data['email']
             message1 = (f"アンケート回答のお知らせ。「{name}」さま", f"「{name}」さまがアンケートに回答されました。", from_email, ['s-shotaro@berraquera-jp.com'])
-            message2 = ("アンケート回答のお礼", f"「{name}」 さま \n ご回答ありがとうございます。\n\n スタッフにこのメールをお見せください。", from_email, [from_email])
+            message2 = ("アンケート回答のお礼", f"「{name}」 さま \n ご回答ありがとうございます。\n\nJR田主丸駅構内のカフェ「カパテリア」で「400円分サービス」させていただきます。 \n\nご利用の際はスタッフにこのメールをお見せください。", from_email, [from_email])
             try:
                 send_mass_mail((message1, message2), fail_silently=False)
             except BadHeaderError:

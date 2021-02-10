@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='anke',
-            name='sex',
+            name='gender',
             field=models.CharField(choices=[('m', '男性'), ('f', '女性')], max_length=200, null=True, verbose_name='性別'),
         ),
     ]

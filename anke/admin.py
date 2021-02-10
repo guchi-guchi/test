@@ -3,7 +3,7 @@ from anke.models import *
 
 class AnkeAdmin(admin.ModelAdmin):
     model = Anke
-    list_display = ('name','shop', 'sex', 'age', 'email')
+    list_display = ('name','shop', 'gender', 'age', 'email')
 
 admin.site.register(Traffic)
 admin.site.register(Person)

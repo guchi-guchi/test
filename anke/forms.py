@@ -6,7 +6,7 @@ class AnkeForm(ModelForm):
 
     class Meta:
         model = Anke
-        fields = ('name', 'shop', 'sex', 'age', 'address', 'email', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13', 'question14', 'question15')
+        fields = ('name', 'shop', 'gender', 'age', 'address', 'email', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13', 'question14', 'question15')
         question3 = ModelChoiceField(queryset=Traffic.objects.all())
         question4 = ModelMultipleChoiceField(queryset=Person.objects.all())
         question5 = ModelMultipleChoiceField(queryset=Purpose.objects.all())
@@ -18,10 +18,10 @@ class AnkeForm(ModelForm):
             'shop': Select(attrs={
                 'placeholder': '選択して下さい',
             }),
-            'sex': RadioSelect(attrs={
+            'gender': Select(attrs={
                 'placeholder': '選択して下さい',
             }),
-            'age': NumberInput(attrs={
+            'age': Select(attrs={
                 'placeholder': '数字を記入して下さい',
             }),
             'address': TextInput(attrs={
@@ -79,8 +79,8 @@ class AnkeForm(ModelForm):
         labels = {
             'name': 'お名前',
             'shop': 'ご来店の店舗名',
-            'sex': '性別',
-            'age': 'ご年齢',
+            'gender': '性別',
+            'age': 'ご年代',
             'address': 'ご住所',
             'email': 'Eメールアドレス',
             'question1': '質問1：耳納北麓エリアに来るのは何回目ですか？',
