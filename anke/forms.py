@@ -101,5 +101,5 @@ class AnkeForm(ModelForm):
             'question13': '質問13：その場所が100点とすると、このエリアは何点ですか？',
             'question14': '質問14：その点数にした（減点した）理由は何ですか？',
             'question15': '質問15：このエリアに欠けてるものがあるとすれば、それは何でしょうか？',
-            'notification': '<span class="text-success lead">久留米DMOメールマガジン<br>を購読する。</span><br>希望されない方は、チェックを外してください。',
+            'notification': '<span class="text-success lead">久留米DMOメールマガジン<br>を購読する。</span><br><span class="text-danger">希望する方はチェックを付けてください。</span>',
         }
