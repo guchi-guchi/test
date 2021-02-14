@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 
 
 class Traffic(models.Model):
@@ -115,6 +117,7 @@ class Anke(models.Model):
     question13 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問13'))
     question14 = models.TextField(blank=True, null=True, verbose_name=('質問14'))
     question15 = models.TextField(blank=True, null=True, verbose_name=('質問15'))
+    notification = models.BooleanField(default=True, null=True, verbose_name=('通知'))
 
     class Meta:
         verbose_name = ('アンケート')
@@ -122,3 +125,29 @@ class Anke(models.Model):
 
     def __str__(self):
         return self.name
+
+    
+class Newsletter(models.Model):
+    title = models.CharField(max_length=300, null=True, verbose_name=('タイトル'))
+    message = models.TextField(verbose_name=('本文'))
+
+    class Meta:
+        verbose_name = ('メールマガジン')
+        verbose_name_plural = ('メールマガジン')
+
+    def __str__(self):
+        return self.title
+
+    def email_push(self, request):
+        context = {
+            'news': self,
+        }
+        subject = render_to_string('anke/notify_subject.txt', context, request)
+        message = render_to_string('anke/notify_message.txt', context, request)
+
+        from_email = settings.DEFAULT_FROM_EMAIL
+        bcc = [settings.DEFAULT_FROM_EMAIL]
+        for mail_push in Anke.objects.filter(notification=True):
+            bcc.append(mail_push.email)
+        email = EmailMessage(subject, message, from_email, [], bcc)
+        email.send()
