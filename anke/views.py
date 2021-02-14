@@ -30,7 +30,7 @@ def ankeView(request):
             survey = form.save(commit=False)
             survey = form.save()
             form.save_m2m()
-            return redirect('anke:index')
+            return redirect('anke:success')
         else:
             params['message'] = '再入力して下さい'
             params['form'] = form
@@ -61,3 +61,7 @@ def ankeExport(request):
 @staff_member_required
 def tableView(request):
     return render(request, 'anke/table.html')
+
+
+def successView(request):
+    return render(request, 'anke/gift.html')

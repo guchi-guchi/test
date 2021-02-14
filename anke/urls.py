@@ -8,4 +8,5 @@ urlpatterns = [
     path('list/', views.ankeList, name='list'),
     path('export/', views.ankeExport, name='export'),
     path('table/', views.tableView, name='table'),
+    path('success/', views.successView, name='success'),
 ]
