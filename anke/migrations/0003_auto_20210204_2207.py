@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='anke',
-            name='sex',
+            name='gender',
             field=models.CharField(max_length=200, null=True, verbose_name='性別'),
         ),
         migrations.AddField(

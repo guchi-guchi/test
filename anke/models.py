@@ -72,6 +72,16 @@ class Anke(models.Model):
         ('4', '地元住民'),
     )
     
+    AGE_CHOICES = (
+        ('0', '20歳未満'),
+        ('1', '20歳以上〜30歳未満'),
+        ('2', '30歳以上〜40歳未満'),
+        ('3', '40歳以上〜50歳未満'),
+        ('4', '50歳以上〜60歳未満'),
+        ('6', '60歳以上〜70歳未満'),
+        ('7', '70歳以上'),
+    )
+    
     MONEY_CHOICES = (
         ('0', '1000円未満'),
         ('1', '1000円以上〜2000円未満'),
@@ -89,15 +99,16 @@ class Anke(models.Model):
         ('others', 'その他'),
     )
 
-    SEX_CHOICES = (
+    GENDER_CHOICES = (
         ('m', '男性'),
         ('f', '女性'),
+        ('c', 'カスタム'),
     )
 
     name = models.CharField(max_length=200, verbose_name=('氏名'))
     shop = models.CharField(max_length=300, default='others', verbose_name=('お店'), choices=SHOP_CHOICES)
-    age = models.PositiveIntegerField(null=True, verbose_name=('年齢'), blank=True)
-    sex = models.CharField(max_length=200, verbose_name=('性別'), choices=SEX_CHOICES, default='f')
+    age = models.CharField(max_length=200, null=True, verbose_name=('年代'), blank=True,  choices=AGE_CHOICES)
+    gender = models.CharField(max_length=200, verbose_name=('性別'), choices=GENDER_CHOICES, null=True, blank=True)
     address = models.CharField(blank=True, null=True, max_length=300, verbose_name=('住所'))
     email = models.EmailField(verbose_name=('Eメールアドレス'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=('回答日時'), null=True)

@@ -8,7 +8,7 @@ def notify(modeladmin, request, queryset):
 
 class AnkeAdmin(admin.ModelAdmin):
     model = Anke
-    list_display = ('name','shop', 'sex', 'age', 'email')
+    list_display = ('name','shop', 'gender', 'age', 'email')
 
 
 class NewsletterAdmin(admin.ModelAdmin):
