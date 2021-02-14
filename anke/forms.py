@@ -6,7 +6,7 @@ class AnkeForm(ModelForm):
 
     class Meta:
         model = Anke
-        fields = ('name', 'shop', 'gender', 'age', 'address', 'email', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13', 'question14', 'question15')
+        fields = ('name', 'shop', 'gender', 'age', 'address', 'email', 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13', 'question14', 'question15', 'notification')
         question3 = ModelChoiceField(queryset=Traffic.objects.all())
         question4 = ModelMultipleChoiceField(queryset=Person.objects.all())
         question5 = ModelMultipleChoiceField(queryset=Purpose.objects.all())
@@ -75,6 +75,9 @@ class AnkeForm(ModelForm):
             'question15': TextInput(attrs={
                 'placeholder': '自由に記入して下さい',
             }),
+            'notification': CheckboxInput(attrs={
+                'placeholder': '自由に記入して下さい',
+            }),
         }
         labels = {
             'name': 'お名前',
@@ -98,4 +101,5 @@ class AnkeForm(ModelForm):
             'question13': '質問13：その場所が100点とすると、このエリアは何点ですか？',
             'question14': '質問14：その点数にした（減点した）理由は何ですか？',
             'question15': '質問15：このエリアに欠けてるものがあるとすれば、それは何でしょうか？',
+            'notification': 'メールマガジンの購読を希望されない方は、チェックを外してください',
         }
