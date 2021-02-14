@@ -13,9 +13,5 @@
     <h6 class="text-primary mb-3 lead">※「回答する」ボタンを押すと<br>通知のメールが届きますので<br>ご確認ください。</h6>
     <button class="btn btn-warning" type="submit">回答する</button>
   </form>
-  
-  {% if user.is_staff %}
-  <p><a class="text-success" href="{% url 'anke:table' %}">データベース<span class="small">（管理者のみアクセス可能）</span></a></p>
-  {% endif %}
 </div>
 {% endblock content %}
