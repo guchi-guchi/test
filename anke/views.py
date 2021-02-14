@@ -53,9 +53,9 @@ def ankeExport(request):
     filename = urllib.parse.quote((u'アンケート回答リスト.csv').encode("utf8"))
     response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
     writer = csv.writer(response)
-    writer.writerow(['回答日', '手段', '氏名', '住所', '年代', '性別', 'Eメールアドレス', '質問１', '質問２', '質問３', '質問４', '質問５', '質問６', '質問7', '質問8', '質問9', '質問10', '質問11', '質問12', '質問13', '質問14', '質問15'])
+    writer.writerow(['回答日', '手段', '氏名', '住所', '年代', '性別', 'メルマガ', 'Eメールアドレス', '質問１', '質問２', '質問３', '質問４', '質問５', '質問６', '質問7', '質問8', '質問9', '質問10', '質問11', '質問12', '質問13', '質問14', '質問15'])
     for answer in data:
-        writer.writerow([answer.created.date(), answer.status, answer.name, answer.address, answer.age, answer.gender, answer.email, answer.question1, answer.question2, answer.question3, answer.question4.all(), answer.question5.all(), answer.question6.all(), answer.question7, answer.question8, answer.question9, answer.question10, answer.question11, answer.question12, answer.question13, answer.question14, answer.question15])
+        writer.writerow([answer.created.date(), answer.status, answer.name, answer.address, answer.age, answer.gender, answer.notification, answer.email, answer.question1, answer.question2, answer.question3, answer.question4.all(), answer.question5.all(), answer.question6.all(), answer.question7, answer.question8, answer.question9, answer.question10, answer.question11, answer.question12, answer.question13, answer.question14, answer.question15])
     return response
 
 @staff_member_required
