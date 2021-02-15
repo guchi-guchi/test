@@ -131,6 +131,7 @@ class Anke(models.Model):
     notification = models.BooleanField(default=False, null=True, verbose_name=('メルマガ'))
 
     class Meta:
+        ordering = ['-created']
         verbose_name = ('アンケート')
         verbose_name_plural = ('アンケート')
 
