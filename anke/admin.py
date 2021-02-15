@@ -15,6 +15,7 @@ class AnkeAdmin(admin.ModelAdmin):
 
 class NewsletterAdmin(admin.ModelAdmin):
     model = Newsletter
+    list_display = ('title','created',)
     actions = [notify]
 
 

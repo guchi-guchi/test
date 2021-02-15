@@ -142,8 +142,10 @@ class Anke(models.Model):
 class Newsletter(models.Model):
     title = models.CharField(max_length=300, null=True, verbose_name=('タイトル'))
     message = models.TextField(verbose_name=('本文'))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=('作成日時'), null=True)
 
     class Meta:
+        ordering = ['-created']
         verbose_name = ('メールマガジン')
         verbose_name_plural = ('メールマガジン')
 
