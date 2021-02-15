@@ -15,8 +15,15 @@ class AnkeAdmin(admin.ModelAdmin):
 
 class NewsletterAdmin(admin.ModelAdmin):
     model = Newsletter
-    list_display = ('title','created',)
+    list_display = ('title','get_date_formatted',)
+    search_fields = ('title', 'message',)
     actions = [notify]
+
+    def get_date_formatted(self, obj):
+        if obj:
+            return obj.created.date()
+    get_date_formatted.admin_order_field = '作成日'
+    get_date_formatted.short_description = '作成日'
 
 
 admin.site.register(Traffic)
