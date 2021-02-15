@@ -128,7 +128,7 @@ class Anke(models.Model):
     question13 = models.PositiveIntegerField(blank=True, null=True, verbose_name=('質問13'))
     question14 = models.TextField(blank=True, null=True, verbose_name=('質問14'))
     question15 = models.TextField(blank=True, null=True, verbose_name=('質問15'))
-    notification = models.BooleanField(default=False, null=True, verbose_name=('通知'))
+    notification = models.BooleanField(default=False, null=True, verbose_name=('メルマガ'))
 
     class Meta:
         verbose_name = ('アンケート')
