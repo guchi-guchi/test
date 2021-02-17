@@ -10,7 +10,7 @@
   <form  method="post" class="mb-3">
     {% csrf_token %}
     {{ form|crispy }}
-    <h6 class="text-primary mb-3 lead">※「回答する」ボタンを押すと<br>通知のメールが届きますので<br>ご確認ください。</h6>
+    <h6 class="mb-3">※「回答する」ボタンを押すと<br><span class="text-primary lead">通知のメール</span>が届きますので<br>ご確認ください。</h6>
     <button class="btn btn-warning" type="submit">回答する</button>
   </form>
 </div>
