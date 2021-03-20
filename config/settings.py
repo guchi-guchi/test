@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'allauth.account', # new
     'allauth.socialaccount', # new
     'allauth.socialaccount.providers.line',  # new  
+    'disqus', # new
 ]
 
 MIDDLEWARE = [
