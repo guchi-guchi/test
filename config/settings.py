@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'allauth.account', # new
     'allauth.socialaccount', # new
     'allauth.socialaccount.providers.line',  # new  
-    'disqus', # new
+    # 'disqus', # new
 ]
 
 MIDDLEWARE = [
@@ -155,6 +155,6 @@ EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 
-DISQUS_API_KEY = env("DISQUS_API_KEY")
-DISQUS_WEBSITE_SHORTNAME = env("DISQUS_WEBSITE_SHORTNAME")
+# DISQUS_API_KEY = env("DISQUS_API_KEY")
+# DISQUS_WEBSITE_SHORTNAME = env("DISQUS_WEBSITE_SHORTNAME")
 
